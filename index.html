@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="ja">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>資産管理アプリ</title>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <main class="container">
+      <header class="page-header">
+        <h1>資産管理アプリ</h1>
+        <p>現金・預金・投資・負債を登録して、純資産をひと目で確認できます。</p>
+      </header>
+
+      <section class="summary-grid" aria-label="サマリー">
+        <article class="card">
+          <h2>総資産</h2>
+          <p id="total-assets">¥0</p>
+        </article>
+        <article class="card">
+          <h2>総負債</h2>
+          <p id="total-liabilities">¥0</p>
+        </article>
+        <article class="card highlight">
+          <h2>純資産</h2>
+          <p id="net-worth">¥0</p>
+        </article>
+      </section>
+
+      <section class="card form-card" aria-label="資産入力フォーム">
+        <h2>資産を追加</h2>
+        <form id="asset-form">
+          <label>
+            項目名
+            <input id="name" name="name" type="text" placeholder="例: 銀行預金" required />
+          </label>
+
+          <label>
+            区分
+            <select id="category" name="category" required>
+              <option value="cash">現金・預金</option>
+              <option value="investment">投資</option>
+              <option value="real-estate">不動産</option>
+              <option value="other-assets">その他資産</option>
+              <option value="liability">負債</option>
+            </select>
+          </label>
+
+          <label>
+            金額（円）
+            <input id="amount" name="amount" type="number" min="0" step="1" placeholder="100000" required />
+          </label>
+
+          <label>
+            メモ（任意）
+            <input id="memo" name="memo" type="text" placeholder="例: 住宅ローン残高" />
+          </label>
+
+          <button type="submit">追加する</button>
+        </form>
+      </section>
+
+      <section class="card" aria-label="登録済み資産一覧">
+        <div class="section-header">
+          <h2>登録済み一覧</h2>
+          <button id="clear-all" class="secondary" type="button">全件削除</button>
+        </div>
+        <ul id="asset-list" class="asset-list"></ul>
+      </section>
+    </main>
+
+    <template id="asset-item-template">
+      <li class="asset-item">
+        <div>
+          <p class="asset-name"></p>
+          <p class="asset-meta"></p>
+        </div>
+        <div class="asset-actions">
+          <p class="asset-amount"></p>
+          <button class="danger" type="button">削除</button>
+        </div>
+      </li>
+    </template>
+
+    <script src="app.js"></script>
+  </body>
+</html>

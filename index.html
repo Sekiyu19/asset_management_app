@@ -1,0 +1,92 @@
+<!doctype html>
+<html lang="ja">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>資産管理アプリ</title>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <header>
+      <h1>資産管理アプリ</h1>
+      <p>現金・口座・投資の残高をまとめて管理できます。</p>
+    </header>
+
+    <main>
+      <section class="card">
+        <h2>資産を追加</h2>
+        <form id="asset-form">
+          <label>
+            資産名
+            <input id="name" type="text" placeholder="例: 普通預金" required />
+          </label>
+
+          <label>
+            カテゴリ
+            <select id="category" required>
+              <option value="現金">現金</option>
+              <option value="預金">預金</option>
+              <option value="投資">投資</option>
+              <option value="その他">その他</option>
+            </select>
+          </label>
+
+          <label>
+            金額 (円)
+            <input id="amount" type="number" min="0" step="1" required />
+          </label>
+
+          <button type="submit">追加</button>
+        </form>
+      </section>
+
+      <section class="card">
+        <h2>サマリー</h2>
+        <div class="summary-grid">
+          <div>
+            <p class="summary-label">総資産</p>
+            <p id="total" class="summary-value">¥0</p>
+          </div>
+          <div>
+            <p class="summary-label">現金</p>
+            <p id="sum-cash" class="summary-value">¥0</p>
+          </div>
+          <div>
+            <p class="summary-label">預金</p>
+            <p id="sum-bank" class="summary-value">¥0</p>
+          </div>
+          <div>
+            <p class="summary-label">投資</p>
+            <p id="sum-invest" class="summary-value">¥0</p>
+          </div>
+        </div>
+      </section>
+
+      <section class="card">
+        <h2>資産一覧</h2>
+        <table>
+          <thead>
+            <tr>
+              <th>資産名</th>
+              <th>カテゴリ</th>
+              <th>金額</th>
+              <th>操作</th>
+            </tr>
+          </thead>
+          <tbody id="asset-table-body"></tbody>
+        </table>
+      </section>
+    </main>
+
+    <template id="row-template">
+      <tr>
+        <td data-name></td>
+        <td data-category></td>
+        <td data-amount></td>
+        <td><button type="button" class="delete-btn">削除</button></td>
+      </tr>
+    </template>
+
+    <script src="app.js"></script>
+  </body>
+</html>

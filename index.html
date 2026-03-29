@@ -1,0 +1,91 @@
+<!doctype html>
+<html lang="ja">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>資産管理アプリ</title>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <main class="container">
+      <header>
+        <h1>資産管理アプリ</h1>
+        <p>保有資産の登録・更新・削除と、合計金額の可視化ができます。</p>
+      </header>
+
+      <section class="card">
+        <h2>資産を追加</h2>
+        <form id="asset-form">
+          <div class="form-grid">
+            <label>
+              資産名
+              <input id="name" type="text" required placeholder="例: 全世界株式" />
+            </label>
+
+            <label>
+              カテゴリ
+              <select id="category" required>
+                <option value="">選択してください</option>
+                <option>現金</option>
+                <option>株式</option>
+                <option>投資信託</option>
+                <option>暗号資産</option>
+                <option>債券</option>
+                <option>不動産</option>
+                <option>その他</option>
+              </select>
+            </label>
+
+            <label>
+              金額（円）
+              <input id="amount" type="number" min="0" step="1" required placeholder="100000" />
+            </label>
+          </div>
+          <button type="submit">追加</button>
+        </form>
+      </section>
+
+      <section class="card summary">
+        <h2>サマリー</h2>
+        <p>総資産: <strong id="total-assets">¥0</strong></p>
+        <p>登録件数: <strong id="asset-count">0</strong> 件</p>
+      </section>
+
+      <section class="card">
+        <div class="table-header">
+          <h2>資産一覧</h2>
+          <button id="clear-all" class="danger">全件削除</button>
+        </div>
+
+        <div class="table-wrapper">
+          <table>
+            <thead>
+              <tr>
+                <th>資産名</th>
+                <th>カテゴリ</th>
+                <th>金額（円）</th>
+                <th>操作</th>
+              </tr>
+            </thead>
+            <tbody id="asset-table-body"></tbody>
+          </table>
+        </div>
+        <p id="empty-message" class="empty-message">資産が登録されていません。</p>
+      </section>
+    </main>
+
+    <template id="asset-row-template">
+      <tr>
+        <td class="asset-name"></td>
+        <td class="asset-category"></td>
+        <td class="asset-amount"></td>
+        <td class="actions">
+          <button class="secondary edit">編集</button>
+          <button class="danger delete">削除</button>
+        </td>
+      </tr>
+    </template>
+
+    <script src="app.js"></script>
+  </body>
+</html>
